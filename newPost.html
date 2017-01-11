@@ -41,7 +41,7 @@
 
 		<div class="container">
 
-			<h1>Главная</h1>
+			<h1>Новая статья</h1>
 
 			<div class="col-md-2">
 				<!-- Навигация -->
@@ -55,57 +55,34 @@
 			</div>
 
 			<div class="col-md-10">
-				<div class="news">
+				<form action="">
+					<input type="text" name="title" placeholder="Заголовок">
+					<textarea name="summary" cols="30" rows="4" placeholder="Описание статьи"></textarea>
+					<textarea name="summary" cols="30" rows="10" placeholder="Тело статьи"></textarea>
+					
+					<div class="opt">
+						<label for="category">Категория: </label>
 
-
-
-					<div class="post">
-
-						<div class="news_data">
-								<time datetime="">2017-01-10</time>
-								<span class="category">Спорт</span>
-						</div>
-
-						<h2><a href="#">Заголовок 1</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
-
+						<select name="category">
+							<option value="">Спорт</option>
+							<option value="">Политика</option>
+							<option value="">Культура</option>
+							<option value="">Религия</option>
+						</select>
 					</div>
 
-					<div class="post">
-
-						<div class="news_data">
-							<time datetime="">2017-01-10</time>
-							<span class="category">Спорт</span>
-						</div>
-
-						<h2><a href="#">Заголовок 2</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
-
+					<div class="opt" id="opt_r">
+						<label for="status">Статус: </label>
+						<select name="status">
+							<option value="">Опубликовано</option>
+							<option value="">Не опубликовано</option>
+						</select>
 					</div>
-
-					<div class="post">
-
-						<div class="news_data">
-							<time datetime="">2017-01-10</time>
-							<span class="category">Спорт</span>
-						</div>
-
-						<h2><a href="#">Заголовок 3</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
-
-					</div>
-					<!--  Пагинатор -->
-					<div class="pagination">
-						<ul>
-							<li><a href="#" class="button active">1</a></li>
-							<li><a href="#" class="button">2</a></li>
-							<li><a href="#" class="button">3</a></li>
-							<li><a href="#" class="button">4</a></li>
-							<li><a href="#" class="button">5</a></li>
-						</ul>
-					</div>
-
-				</div>
+					<input class="button" type="submit" value="Добавить">
+				</form>
+			</div>
+			<div class="col-md-12">
+				
 			</div>
 		</div>
 
