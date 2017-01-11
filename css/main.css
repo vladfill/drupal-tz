@@ -33,16 +33,25 @@ body {
 	font-size: 16px;
 }
 
+article h1{
+	text-transform: uppercase;
+	font-family: "AlexanderRegular";
+	font-size: 40px;
+	color: #5484C1;
+	text-align: center;
+}
+
 /*****************header**********************/
 
 header{
 	text-transform: uppercase;
 	font-family: "RobotoBold";
 	margin-top: 10px;
+	border-bottom: 1px solid #666;
 }
 
 header .row{
-	border-bottom: 1px solid #666;
+	
 }
 
 .button{
@@ -65,10 +74,8 @@ header p{
 	background-color: #2B608D;
 	color: #fff;
 }
-/*************************/
-article h1{
-	text-align: center;
-}
+
+
 /****************************nav***********************/
 
 nav{
@@ -148,4 +155,50 @@ footer{
 footer p{
 	color: #fff;
 	text-align: right;
+}
+
+/************news****************/
+.post{
+	padding: 20px;
+	color: #666;
+}
+
+.post:hover{
+	border:1px solid #343C45;
+}
+
+.post .news_data time{
+	text-align: left;
+	font-family: "RobotoMedium";
+}
+
+.post .news_data span{
+	float: right;
+}
+
+#category{
+	background: #DC1F25;
+	border: 1px solid #DC1F25;
+	border-radius: 50%;
+	padding: 5px 10px;
+	color: #fff;
+}
+
+.post h2{
+	font-family: "RobotoBold";
+	text-align: center;
+	
+}
+
+.post h2 a{
+	color: #666;
+}
+
+.post h2 a:hover{
+	text-decoration: underline;
+}
+
+.post p{
+	font-family: "RobotoLight";
+	color: #44A4A4;
 }

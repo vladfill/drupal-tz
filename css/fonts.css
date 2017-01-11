@@ -38,3 +38,14 @@
 	font-style: normal;
 	font-weight: normal;
 }
+
+/* font-family: "AlexanderRegular"; */
+@font-face {
+    font-family: "AlexanderRegular";
+    src: url("../fonts/AlexanderRegular/AlexanderRegular.eot");
+    src: url("../fonts/AlexanderRegular/AlexanderRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/AlexanderRegular/AlexanderRegular.woff") format("woff"),
+    url("../fonts/AlexanderRegular/AlexanderRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
