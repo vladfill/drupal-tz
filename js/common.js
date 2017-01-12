@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+	// Футер минимум снизу
+	var displayHeight = window.innerHeight;
+	$('article').css('min-height', displayHeight-160);
+
 	//Таймер обратного отсчета
 	//Документация: http://keith-wood.name/countdown.html
 	//<div class="countdown" date-time="2015-01-07"></div>
