@@ -7,11 +7,11 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>SoftGroup</title>
+	<title> <?php echo $pageTitle; ?> </title>
 	<meta name="description" content="" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="shortcut icon" href="favicon.png" />
+	<link rel="shortcut icon" href="favicon.ico"  type="image/x-icon"/>
 	<link rel="stylesheet" href="libs/bootstrap/bootstrap-grid-3.3.1.min.css" />
 	<link rel="stylesheet" href="libs/font-awesome-4.2.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="libs/fancybox/jquery.fancybox.css" />
@@ -31,8 +31,8 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-6"><p>
-				<a href="#"class="button"><span>Все статьи</span></a>
-				<a href="#" class="button"><span>Добавить стаью</span></a></p></div>
+				<a href="?active=allPosts"class="button"><span>Все статьи</span></a>
+				<a href="?active=newPost" class="button"><span>Добавить стаью</span></a></p></div>
 			</div>
 		</div>
 	</header>
@@ -43,15 +43,15 @@
 
 		<div class="container">
 
-			<h1>Главная</h1>
+			<h1> <?php echo $pageTitle; ?> </h1>
 
 			<div class="col-md-2">
 				<!-- Навигация -->
 				<nav>
 					<ul>
-						<li class="current"><a href="#">Главная</a></li>
-						<li><a href="#">Новости</a></li>
-						<li><a href="#">Контакты</a></li>
+						<li class="current"><a href="index.php">Главная</a></li>
+						<li><a href="?active=news">Новости</a></li>
+						<li><a href="?active=contacts">Контакты</a></li>
 					</ul>
 				</nav>
 			</div>

@@ -1,3 +1,5 @@
+<?php require TEMPLATE_PATH . "/include/header.php"; ?>
+
 			<div class="col-md-10">
 				<form action="">
 					<input type="text" name="title" placeholder="Заголовок">
@@ -30,5 +32,6 @@
 			</div>
 		</div>
 
-
 	</article>
+
+<?php require TEMPLATE_PATH . "/include/footer.php"; ?>

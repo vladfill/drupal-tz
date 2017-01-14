@@ -1,7 +1,7 @@
+<?php require TEMPLATE_PATH . "/include/header.php"; ?>
+
 			<div class="col-md-10">
 				<div class="news">
-
-
 
 					<div class="single_post">
 
@@ -23,8 +23,7 @@
 
 					</div>
 
-					
-					
-
 				</div>
 			</div>
+
+<?php require TEMPLATE_PATH . "/include/footer.php"; ?>
