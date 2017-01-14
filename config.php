@@ -6,5 +6,5 @@ define( "CLASS_PATH", "classes" );
 define( "TEMPLATE_PATH", "templates" );
 define( "HOMEPAGE_NUM_POSTS", 1 );
 
-require( CLASS_PATH . "/Article.php" );
+require( CLASS_PATH . "/Post.php" );
 ?>
