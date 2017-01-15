@@ -173,5 +173,20 @@ class Post
     $st->execute();
     $conn = null;
   }
+
+  public static function getNumPages( $where="" ){
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "SELECT id FROM posts" . $where;
+    $st = $conn->prepare( $sql );
+    $st->execute();
+
+    while ( $row = $st->fetch() ) {
+      $list[] = $row;
+    }
+
+    $conn = null;
+
+    return count( $list );
+  }
 }
 ?>

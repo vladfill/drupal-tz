@@ -49,9 +49,9 @@
 				<!-- Навигация -->
 				<nav>
 					<ul>
-						<li class="current"><a href="index.php">Главная</a></li>
-						<li><a href="?active=news">Новости</a></li>
-						<li><a href="?active=contacts">Контакты</a></li>
+						<li data-nav="default"><a href="index.php">Главная</a></li>
+						<li data-nav="news"><a href="?active=news">Новости</a></li>
+						<li data-nav="contacts"><a href="?active=contacts">Контакты</a></li>
 					</ul>
 				</nav>
 			</div>
