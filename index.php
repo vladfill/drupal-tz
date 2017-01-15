@@ -6,6 +6,11 @@ $active = $_GET['active'];
 if ( isset( $_GET['id'] ) ) $id = (int)$_GET['id'];
 
 switch ($active) {
+	
+	case 'deletePost':
+	deletePost( $id );
+	break;
+
 	case 'singlePost':
 	getSinglePost( $id );
 	break;
@@ -35,6 +40,12 @@ switch ($active) {
 	break;
 }
 
+function deletePost( $id ) {
+	$post = Post::getPostById( $id );
+	$post->delete();
+	header( "Location: index.php?status=changesSaved" );
+}
+
 function getSinglePost ( $id ) {
 	$post = Post::getPostById( $id );
 	$pageTitle = $post->title;
@@ -46,19 +57,23 @@ function getContacts () {
 	require_once ( TEMPLATE_PATH . "/contacts.php" );
 }
 
-function changePost ( $id ) {
+function changePost ($id) {
 	$pageTitle = 'Изменить данные';
 	$formAction = 'changePost';
 
 	if ( isset( $_POST['addNew'] ) ) {
 		$post = new Post( $_POST );
 		$post->update();
-		header( "Location: index.php?status=changesSaved" );
+		header( "Location: index.php?status=postDeleted" );
 	}
 
 	elseif ( isset( $_POST['delete'] ) ) {
-		Post::delete( $id );
-		header( "Location: admin.php?status=postDeleted" );
+		// echo $id;
+		// echo Post::delete( $id );
+		// $post = new Post( $_POST['id'] );
+		$post = Post::getPostById( $id );
+		$post->delete();
+		// header( "Location: index.php?status=postDeleted" );
 	}
 
 	elseif ( isset( $_POST['cansel'] ) ) {

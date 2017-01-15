@@ -30,8 +30,8 @@
 					<input class="button" type="submit" value="Отмена" name="cansel">
 
 					<?php if ( isset( $_GET['id'] ) ) {
-						echo '<input class="button" type="submit" value="Удалить" name="delete">';
-						echo '<input type="hidden" value="<?php echo $post->id; ?>" name="id">';
+						echo '<a href="index.php?active=deletePost&id=' . $post->id . '" class="button">Удалить</a>';
+						echo '<input type="hidden" value="' . $post->id . '" name="id">';
 					}
 					
 					?>

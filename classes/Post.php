@@ -136,15 +136,17 @@ class Post
   * Удаляем текущий объект статьи из базы данных
   */
 
-  public static function delete( $id ) {
+  public function delete() {
 
     // Есть ли у объекта статьи ID?
     // if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
 
     // Удаляем статью
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $st = $conn->prepare ( "DELETE FROM posts WHERE id = :id LIMIT 1" );
-    $st->bindValue( ":id", $id, PDO::PARAM_INT );
+    $sql = "DELETE FROM posts WHERE id=:id LIMIT 1";
+
+    $st = $conn->prepare ( $sql );
+    $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
     $st->execute();
     $conn = null;
   }
