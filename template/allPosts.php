@@ -3,22 +3,24 @@
 			<div class="col-md-10">
 				<div class="news">
 
-
-
+<?php foreach ($result as $post) { ?>
 					<div class="post">
 
 						<div class="news_data">
-								<time datetime="">2017-01-10</time>
-								<span class="category">Спорт</span>
-								<span class="status">Опубликовано</span>
+							<time datetime=" <?php echo date("d.m.Y" , $post->publicationDate ); ?> ">
+								 <?php echo date("d.m.Y" ,$post->publicationDate ); ?> 
+							</time>
+							<span class="category"><?php echo getCategoryName ( $post->category ); ?></span>
+							<span class="status"><?php echo getStatusName ( $post->status ) ?></span>
 						</div>
 
-						<h2><a href="#">Заголовок 1</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
+						<h2><a href="?active=changePost&id=<?php echo $post->id; ?> "> <?php echo $post->title; ?> </a></h2>
 
-					
+						<p> <?php echo $post->summary; ?> </p>
 
 					</div>
+<?php } ?>
+
 					<!--  Пагинатор -->
 					<div class="pagination">
 						<ul>

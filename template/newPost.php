@@ -1,11 +1,7 @@
 <?php require TEMPLATE_PATH . "/include/header.php"; ?>
 
 			<div class="col-md-10">
-				<form action="">
-					<input type="text" name="title" placeholder="Заголовок">
-					<textarea name="summary" cols="30" rows="4" placeholder="Описание статьи"></textarea>
-					<textarea name="content" cols="30" rows="10" placeholder="Тело статьи"></textarea>
-					
+				<form action="index.php?active=<?php echo $formAction; ?>" method="post">
 					<div class="opt">
 						<label for="category">Категория: </label>
 
@@ -15,6 +11,7 @@
 							<option value="3">Культура</option>
 							<option value="4">Религия</option>
 						</select>
+						<?php echo $category; ?>
 					</div>
 
 					<div class="opt" id="opt_r">
@@ -23,8 +20,22 @@
 							<option value="1">Опубликовано</option>
 							<option value="0">Не опубликовано</option>
 						</select>
+						<?php echo $status; ?>
 					</div>
-					<input class="button" type="submit" value="Добавить">
+					<input type="text" name="title" placeholder="Заголовок" value="<?php echo $post->title; ?>">
+					<textarea name="summary" cols="30" rows="4" placeholder="Описание статьи"><?php echo $post->summary; ?></textarea>
+					<textarea name="content" cols="30" rows="10" placeholder="Тело статьи"><?php echo $post->content; ?></textarea>
+					
+					<input class="button" type="submit" value="Добавить" name="addNew">
+					<input class="button" type="submit" value="Отмена" name="cansel">
+
+					<?php if ( isset( $_GET['id'] ) ) {
+						echo '<input class="button" type="submit" value="Удалить" name="delete">';
+						echo '<input type="hidden" value="<?php echo $post->id; ?>" name="id">';
+					}
+					
+					?>
+					
 				</form>
 			</div>
 			<div class="col-md-12">

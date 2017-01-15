@@ -264,7 +264,7 @@ footer p{
 
 input, textarea{
 	width: 100%;
-	display: block;
+	/*display: block;*/
 }
 
 input, textarea, select{
@@ -287,7 +287,7 @@ select:focus{
 
 input[type='submit']{
 	width: 120px;
-	display: block;
+	/*display: block;*/
 	font-family: "RobotoBold";
 }
 

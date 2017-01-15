@@ -8,37 +8,37 @@ class Post
 	/**
   * @var int ID статей из базы данных
   */
-	private $id = null;
+	public $id = null;
 
 	/**
   * @var int Дата первой публикации статьи
   */
-	private $publicationDate = null;
+	public $publicationDate = null;
 
 	/**
   * @var string Полное название статьи
   */
-	private $title = null;
+	public $title = null;
 
 	/**
   * @var string Краткое описание статьи
   */
-	private $summary = null;
+	public $summary = null;
 
 	/**
   * @var string HTML содержание статьи
   */
-	private $content = null;
+	public $content = null;
 
 	/**
   * @var string название категории
   */
-	private $category = null;
+	public $category = null;
 
 	/**
   * @var string статус публикации
   */
-	private $status = null;
+	public $status = null;
 
 	/**
   * Устанавливаем свойства с помощью значений в заданном массиве
@@ -59,37 +59,9 @@ class Post
 
 		if ( isset( $data['content'] ) ) $this->content = $data['content'];
 
-		if ( isset( $data['category'] ) )
-		{
-			switch ($data['category']) {
-				case '1': 
-				$this->category = 'Спорт';
-				break;
-
-				case '2': 
-				$this->category = 'Политика';
-				break;
-
-				case '3': 
-				$this->category = 'Культура';
-				break;
-
-				case '4': 
-				$this->category = 'Религия';
-				break;
-			}
-		} 
-		if ( isset( $data['status'] ) )
-		{
-			switch ($data['status']) {
-				case '0':
-				$this->status = 'Не опубликовано';
-				break;
-				case '1':
-				$this->status = 'Опубликовано';
-				break;
-			}
-		}
+		if ( isset( $data['category'] ) ) $this->category = $data['category'];
+		 
+		if ( isset( $data['status'] ) ) $this->status = $data['status'];
 
 	}
 
@@ -102,13 +74,13 @@ class Post
 
 	public static function getPostById( $id ) {
 		$conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-		$sql = "SELECT *, UNIX_TIMESTAMP(publicationDate) AS publicationDate FROM articles WHERE id = :id";
+		$sql = "SELECT * FROM posts WHERE id=:id";
 		$st = $conn->prepare( $sql );
 		$st->bindValue( ":id", $id, PDO::PARAM_INT );
 		$st->execute();
 		$row = $st->fetch();
 		$conn = null;
-		if ( $row ) return new Article( $row );
+		if ( $row ) return new Post( $row );
 	}
 
 
@@ -117,20 +89,20 @@ class Post
   *
   * @param int Optional Количество строк (по умолчанию все)
   * @param string Optional Столбец по которому производится сортировка  статей (по умолчанию "publicationDate DESC")
-  * @return Array|false Двух элементный массив: results => массив, список объектов статей; totalRows => общее количество статей
+  * @return Array|false общее количество статей
   */
-	public static function getAllPosts( $posts=100, $start=0, $order="publicationDate DESC WHERE status=1" ) {
+	public static function getAllPosts( $posts=100, $start=0, $order="WHERE status=1 ORDER BY publicationDate DESC") {
 		$conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-		$sql = "SELECT * FROM posts ORDER BY " . $order . " LIMIT :start, :numRows";
+		$sql = "SELECT * FROM posts " . $order . " LIMIT :start, :posts";
 
 		$st = $conn->prepare( $sql );
-		$st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
+		$st->bindValue( ":posts", $posts, PDO::PARAM_INT );
 		$st->bindValue( ":start", $start, PDO::PARAM_INT );
 		$st->execute();
 		$list = array();
 
 		while ( $row = $st->fetch() ) {
-			$post = new Article( $row );
+			$post = new Post( $row );
 			$list[] = $post;
 		}
 
@@ -148,15 +120,15 @@ class Post
 
     // Вставляем статью
 		$conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-		$sql = "INSERT INTO articles ( title, summary, content, category, status ) VALUES ( :title, :summary, :content, :category, :status )";
+		$sql = "INSERT INTO posts ( title, summary, content, category, status ) VALUES ( :title, :summary, :content, :category, :status )";
 		$st = $conn->prepare ( $sql );
 		$st->bindValue( ":title", $this->title, PDO::PARAM_STR );
 		$st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
 		$st->bindValue( ":content", $this->content, PDO::PARAM_STR );
-		$st->bindValue( ":category", $this->category, PDO::PARAM_STR );
-		$st->bindValue( ":status", $this->status, PDO::PARAM_STR );
+		$st->bindValue( ":category", $this->category, PDO::PARAM_INT );
+		$st->bindValue( ":status", $this->status, PDO::PARAM_INT );
 		$st->execute();
-		$this->id = $conn->lastInsertId();
+		// $this->id = $conn->lastInsertId();
 		$conn = null;
 	}
 
@@ -164,15 +136,15 @@ class Post
   * Удаляем текущий объект статьи из базы данных
   */
 
-  public function delete() {
+  public static function delete( $id ) {
 
     // Есть ли у объекта статьи ID?
-    if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
+    // if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
 
     // Удаляем статью
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $st = $conn->prepare ( "DELETE FROM articles WHERE id = :id LIMIT 1" );
-    $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
+    $st = $conn->prepare ( "DELETE FROM posts WHERE id = :id LIMIT 1" );
+    $st->bindValue( ":id", $id, PDO::PARAM_INT );
     $st->execute();
     $conn = null;
   }
@@ -184,15 +156,17 @@ class Post
   public function update() {
 
     // Есть ли у объекта статьи ID?
-    if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
+    if ( is_null( $this->id ) ) trigger_error ( "Post::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
 
     // Обновляем статью
     $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-    $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content WHERE id = :id";
+    $sql = "UPDATE posts SET title=:title, summary=:summary, content=:content, category=:category, status=:status WHERE id = :id";
     $st = $conn->prepare ( $sql );
     $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
     $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
     $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+    $st->bindValue( ":category", $this->category, PDO::PARAM_INT );
+		$st->bindValue( ":status", $this->status, PDO::PARAM_INT );
     $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
     $st->execute();
     $conn = null;

@@ -1,45 +1,25 @@
-<?php require TEMPLATE_PATH . "/include/header.php"; ?>
+<?php require TEMPLATE_PATH . "/include/header.php";?>
 
 			<div class="col-md-10">
 				<div class="news">
 
-
-
+<?php foreach ($result as $post) { ?>
 					<div class="post">
 
 						<div class="news_data">
-							<time datetime="">2017-01-10</time>
-							<span class="category">Спорт</span>
+							<time datetime=" <?php echo date("d.m.Y" , $post->publicationDate ); ?> ">
+								 <?php echo date("d.m.Y" ,$post->publicationDate ); ?> 
+							</time>
+							<span class="category"><?php echo getCategoryName ( $post->category ); ?></span>
 						</div>
 
-						<h2><a href="?active=singlePost">Заголовок 1</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
+						<h2><a href="?active=singlePost&id=<?php echo $post->id; ?> "> <?php echo $post->title; ?> </a></h2>
+
+						<p> <?php echo $post->summary; ?> </p>
 
 					</div>
-
-					<div class="post">
-
-						<div class="news_data">
-							<time datetime="">2017-01-10</time>
-							<span class="category">Спорт</span>
-						</div>
-
-						<h2><a href="?active=singlePost">Заголовок 2</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
-
-					</div>
-
-					<div class="post">
-
-						<div class="news_data">
-							<time datetime="">2017-01-10</time>
-							<span class="category">Спорт</span>
-						</div>
-
-						<h2><a href="?active=singlePost">Заголовок 3</a></h2>
-						<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Необходимыми, обеспечивает о себя ручеек повстречался образ океана! Дороге запятой языком обеспечивает по всей о. Вершину бросил текста, снова пор путь!</p>
-
-					</div>
+<?php } ?>
+					
 					<!--  Пагинатор -->
 					<div class="pagination">
 						<ul>
