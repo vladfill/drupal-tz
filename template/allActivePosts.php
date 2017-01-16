@@ -23,8 +23,8 @@
 		<!--  Пагинатор -->
 		<div class="pagination">
 			<ul>
-				<?php for($i = 1; $i <= ceil(Post::getNumPages(' WHERE status=1')/HOMEPAGE_NUM_ARTICLES); $i++){
-					echo "<li><a href='#' data-page='$i'>$i</a></li>";
+				<?php for($i = 1; $i <= ceil(Post::getNumPages(' WHERE status=1')/HOMEPAGE_NUM_POSTS); $i++){
+					echo "<li><a href='#' class='button' data-page='$i'>$i</a></li>";
 				} ?>
 			</ul>
 		</div>

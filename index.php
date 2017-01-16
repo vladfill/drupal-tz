@@ -5,8 +5,18 @@ $active = $_GET['active'];
 
 if ( isset( $_GET['id'] ) ) $id = (int)$_GET['id'];
 
+if( isset( $_POST['newPage'] ) ) {
+  $active = $_POST['newPage'];
+  $page = (int)$_POST['page'];
+  $start = $page * HOMEPAGE_NUM_POSTS - HOMEPAGE_NUM_POSTS;
+}
+
 switch ($active) {
 	
+	case 'newPage':
+	getNewPage( HOMEPAGE_NUM_POSTS, $start );
+	break;
+
 	case 'deletePost':
 	deletePost( $id );
 	break;
@@ -38,6 +48,12 @@ switch ($active) {
 	default:
 	getAllActivePosts();
 	break;
+}
+
+function getNewPage($posts, $start){
+	$pageTitle = 'Страница ' . $page;
+	$result = Post::getAllPosts( HOMEPAGE_NUM_POSTS, $start );
+	require_once ( TEMPLATE_PATH . "/allActivePostsAJAX.php" );
 }
 
 function deletePost( $id ) {
@@ -123,13 +139,13 @@ function getAllPosts () {
 
 function getNews () {
 	$pageTitle = 'Новости';
-	$result = Post::getAllPosts();
+	$result = Post::getAllPosts(HOMEPAGE_NUM_POSTS);
 	require_once ( TEMPLATE_PATH . "/allActivePosts.php" );
 }
 
 function getAllActivePosts () {
 	$pageTitle = 'Главная';
-	$result = Post::getAllPosts();
+	$result = Post::getAllPosts(HOMEPAGE_NUM_POSTS);
 	require_once ( TEMPLATE_PATH . "/allActivePosts.php" );
 }
 
