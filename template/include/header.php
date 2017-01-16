@@ -31,8 +31,8 @@
 				</div>
 				<div class="col-md-2"></div>
 				<div class="col-md-6"><p>
-				<a href="?active=allPosts"class="button"><span>Редактировать</span></a>
-				<a href="?active=newPost" class="button"><span>Добавить стаью</span></a></p></div>
+				<a href="?active=allPosts"class="button" data-nav="allPosts"><span>Редактировать</span></a>
+				<a href="?active=newPost" class="button" data-nav="newPost"><span>Добавить стаью</span></a></p></div>
 			</div>
 		</div>
 	</header>
