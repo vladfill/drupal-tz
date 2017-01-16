@@ -50,29 +50,34 @@ switch ($active) {
 	break;
 }
 
+// добавление статей страницы AJAX
 function getNewPage($posts, $start){
 	$pageTitle = 'Страница ' . $page;
 	$result = Post::getAllPosts( HOMEPAGE_NUM_POSTS, $start );
 	require_once ( TEMPLATE_PATH . "/allActivePostsAJAX.php" );
 }
 
+// удаление статьи
 function deletePost( $id ) {
 	$post = Post::getPostById( $id );
 	$post->delete();
 	header( "Location: index.php?status=changesSaved" );
 }
 
+// выводит статью в полном виде
 function getSinglePost ( $id ) {
 	$post = Post::getPostById( $id );
 	$pageTitle = $post->title;
 	require_once ( TEMPLATE_PATH . "/singlePost.php" );
 }
 
+// выовдит контакты
 function getContacts () {
 	$pageTitle = 'Контакты';
 	require_once ( TEMPLATE_PATH . "/contacts.php" );
 }
 
+// изменение статьи
 function changePost ($id) {
 	$pageTitle = 'Изменить данные';
 	$formAction = 'changePost';
@@ -105,7 +110,7 @@ function changePost ($id) {
 	}
 }
 
-
+// добавить новую статью
 function setNewPost ($formPost) {
 	$pageTitle = 'Добавить статью';
 	$formAction = 'newPost';
@@ -131,27 +136,28 @@ function setNewPost ($formPost) {
 	
 }
 
+// выводит все статьи для редактирования
 function getAllPosts () {
 	$pageTitle = 'Все статьи';
 	$result = Post::getAllPosts(100, 0, 'ORDER BY publicationDate DESC');
 	require_once ( TEMPLATE_PATH . "/allPosts.php" );
 }
 
+// выводит все опубликованые статьи
 function getNews () {
 	$pageTitle = 'Новости';
 	$result = Post::getAllPosts(HOMEPAGE_NUM_POSTS);
 	require_once ( TEMPLATE_PATH . "/allActivePosts.php" );
 }
 
+// выводит все опубликованые статьи
 function getAllActivePosts () {
 	$pageTitle = 'Главная';
 	$result = Post::getAllPosts(HOMEPAGE_NUM_POSTS);
 	require_once ( TEMPLATE_PATH . "/allActivePosts.php" );
 }
 
-
-
-
+// выводит название категории
 function getCategoryName ( $category ) {
 	switch ( $category ) {
 		case '1': 
@@ -172,6 +178,7 @@ function getCategoryName ( $category ) {
 	}
 }
 
+// выводит название статуса
 function getStatusName ( $status ) {
 	switch ( $status ) {
 		case '0':
